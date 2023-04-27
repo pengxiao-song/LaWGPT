@@ -1,7 +1,12 @@
 # LaWGPT：基于中文法律知识的大语言模型
 
 <!-- ![](assets/lawgpt1.png) -->
-![](assets/lawgpt2.jpeg)
+
+<p align="center">
+  <a href="./assets/logo/lawgpt2.jpeg">
+    <img src="./assets/logo/lawgpt2.jpeg" width="70%" >
+  </a>
+</p>
 
 <p align="center">
     <a href=""><img src="https://img.shields.io/badge/version-alpha1.0-blue"></a>
