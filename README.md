@@ -1,7 +1,7 @@
 # LaWGPT：基于中文法律知识的大语言模型
 
 <p align="center">
-  <a href="https://github.com/pengxiao-song/LaWGPT">
+  <a href="assets/logo/lawgpt.jpeg">
     <img src="./assets/logo/lawgpt.jpeg" width="80%" >
   </a>
 </p>
@@ -16,11 +16,11 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 该系列模型在通用中文基座模型（如 Chinese-LLaMA、ChatGLM 等）的基础上扩充法律领域专有词表、**大规模中文法律语料预训练**，增强了大模型在法律领域的基础语义理解能力。在此基础上，**构造法律领域对话问答数据集、中国司法考试数据集进行指令精调**，提升了模型对法律内容的理解和执行能力。
 
-详细内容请参考技术报告。
+详细内容请参考[技术报告]()。
 
 ---
 
-本项目持续开展，法律领域专有数据集及系列模型后续相继开源，敬请关注。
+本项目持续开展，法律领域数据集及系列模型后续相继开源，敬请关注。
 
 ## 更新
 
@@ -30,7 +30,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
   
   - **LaWGPT-7B-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集指令精调
   
-- 🌟 2023/04/12：内部测试 <a href=""><img src="https://img.shields.io/badge/Model-lawgpt--7b--alpha-yellow"></a>
+- 🌟 2023/04/12：内部测试 <a href=""><img src="https://img.shields.io/badge/Model-Lawgpt--7B--alpha-yellow"></a>
   - **LaWGPT-7B-alpha**：在 Chinese-LLaMA-7B 的基础上直接构造 30w 法律问答数据集指令精调
 
 ## 快速开始
@@ -46,7 +46,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 2. 合并模型权重（可选）
    
-   如果您想使用 LaWGPT-7B-alpha 模型，可跳过改步，直接进入步骤3.
+   **如果您想使用 LaWGPT-7B-alpha 模型，可跳过改步，直接进入步骤3.**
 
    如果您想使用 LaWGPT-7B-beta1.0 模型：
 
@@ -65,7 +65,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    sh src/scripts/generate.sh
    ```
    
-   接入服务，呈现效果：
+   接入服务：
 
    <p align="center">
       <img src="./assets/demo/demo.png" width="80%" >
@@ -98,15 +98,15 @@ LaWGPT
 
 ## 数据构建
 
-本项目汇总互联网上的中文法律数据源
+本项目基于中文裁判文书网公开法律文书数据、司法考试数据等数据集展开，详情参考[中文法律数据汇总]()
 
-1. 初步生成数据：根据 [Stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca#data-generation-process) 和 [self-instruct](https://github.com/yizhongw/self-instruct) 方式生成对话问答数据
-2. 基于知识生成数据：通过 Knowledge-based Self-Instruct 方式基于中文法律结构化知识生成数据。
-3. 引入 ChatGPT 清洗数据，并辅助构造高质量数据集。
+1. 初级数据生成：根据 [Stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca#data-generation-process) 和 [self-instruct](https://github.com/yizhongw/self-instruct) 方式生成对话问答数据
+2. 知识引导的数据生成：通过 Knowledge-based Self-Instruct 方式基于中文法律结构化知识生成数据。
+3. 引入 ChatGPT 清洗数据，辅助构造高质量数据集。
 
 ## 模型训练
 
-中文法律基座模型 LawGPT 的训练过程分为三个阶段：
+LawGPT 系列模型的训练过程分为两个阶段：
 
 1.  第一阶段：扩充法律领域词表，在大规模法律文书及法典数据上预训练 Chinese-LLaMA
 2.  第二阶段：构造法律领域对话问答数据集，在预训练模型基础上指令精调
@@ -190,7 +190,7 @@ LaWGPT
 - alpaca-lora: https://github.com/tloen/alpaca-lora
 - ChatGLM-6B: https://github.com/THUDM/ChatGLM-6B
 
-此外，本项目基于诸多开源数据集展开，详见[数据构建]()，在此一并表示感谢。
+此外，本项目基于诸多开源数据集展开，详见[数据汇总]()，在此一并表示感谢。
 
 ## 引用
 
