@@ -1,8 +1,8 @@
 # LaWGPT：基于中文法律知识的大语言模型
 
 <p align="center">
-  <a href="./assets/logo/lawgpt2.jpeg">
-    <img src="./assets/logo/lawgpt2.jpeg" width="80%" >
+  <a href="https://github.com/pengxiao-song/LaWGPT">
+    <img src="./assets/logo/lawgpt.jpeg" width="80%" >
   </a>
 </p>
 
@@ -24,27 +24,79 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 ## 更新
 
-- 🔥🔥🔥 2023/05/13：公开发布 legal-base-7b，lawgpt-7b-beta1.0
-  - legal-base-7b：基座 Chinese-LLaMA-7B ，基于 50w 中文裁判文书数据二次预训练
-  - lawgpt-7b-beta1.0：基于 legal-base-7b，构造 30w 高质量法律问答数据集指令精调
-- 🔥🔥🔥 2023/04/12：内部测试 lawgpt-7b-alpha
-  - lawgpt-7b-alpha：基座 Chinese-LLaMA-7B ，构造 30w 法律问答数据集指令精调
+- 🌟 2023/05/13：公开发布 <a href=""><img src="https://img.shields.io/badge/Model-legal--base--7b-blue"></a> <a href=""><img src="https://img.shields.io/badge/Model-lawgpt--7b--beta1.0-yellow"></a>
+  
+  - **legal-base-7b**：法律基座模型，使用 50w 中文裁判文书数据二次预训练
+  
+  - **lawgpt-7b-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集指令精调
+  
+- 🌟 2023/04/12：内部测试 <a href=""><img src="https://img.shields.io/badge/Model-lawgpt--7b--alpha1.0-green"></a>
+  - **lawgpt-7b-alpha**：在 Chinese-LLaMA-7B 的基础上直接构造 30w 法律问答数据集指令精调
 
 ## 快速开始
 
-**1. 准备代码，创建环境**
+1. 准备代码，创建环境
 
-```bash
-git clone git@github.com:pengxiao-song/LaWGPT.git
-cd LaWGPT
-conda env create -f environment.yml
-conda activate lawgpt
-```
-**2. 下载模型权重**
+   ```bash
+   git clone git@github.com:pengxiao-song/LaWGPT.git
+   cd LaWGPT
+   conda activate lawgpt
+   pip install -r requirements.txt
+   ```
 
-**3. 启动示例**
+2. 合并模型权重
+   
+   由于 [LLaMA](https://github.com/facebookresearch/llama) 和 [Chinese-LLaMA](https://github.com/ymcui/Chinese-LLaMA-Alpaca) 均未开源模型权重。根据相应开源许可，**本项目只能发布 LoRA 权重**，无法发布完整的模型权重，请各位谅解。
+   
+   本项目给出[合并方式](https://github.com/pengxiao-song/LaWGPT/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6)，请各位获取原版权重后自行重构模型。
+
+
+3. 启动示例
+
+   启动本地服务：
+
+   ```bash
+   conda activate lawgpt
+   cd LaWGPT
+   sh src/scripts/generate.sh
+   ```
+   
+   接入服务链接：
+
+   ```
+   Running on local URL:  http://0.0.0.0:7862
+   Running on public URL: https://06e989c08fe171f47c.gradio.live
+   ```
+   
+   呈现效果：
+
+   <p align="center">
+      <img src="./assets/demo/demo.png" width="80%" >
+   </p>
+
 
 ## 项目结构
+
+```bash
+LaWGPT
+├── assets # 项目静态资源
+├── data   # 语料及精调数据
+├── tools  # 数据清洗等工具
+├── README.md
+├── requirements.txt
+└── src    # 源码
+    ├── finetune.py
+    ├── generate.py
+    ├── models  # 基座模型及 Lora 权重
+    │   ├── base_models
+    │   └── lora_weights
+    ├── outputs
+    ├── scripts # 脚本文件
+    │   ├── finetune.sh # 指令微调
+    │   └── generate.sh # 服务创建
+    ├── templates
+    └── utils
+```
 
 
 ## 数据构建
@@ -60,18 +112,22 @@ conda activate lawgpt
 1.  第一阶段：扩充法律领域词表，在大规模法律文书及法典数据上预训练 Chinese-LLaMA
 2.  第二阶段：构造法律领域对话问答数据集，在预训练模型基础上指令精调
 
+### 二次训练流程
+
+### 指令精调步骤
+
+1. 参考 `data/example_instruction.json` 构造指令微调数据集
+2. 运行 `src/scripts/finetune.sh` 
+
 ### 计算资源
 
 8 张 Tesla V100-SXM2-32GB
 
-### 训练细节
-
-
 ## 模型评估
 
-评估工作正有序开展，敬请期待。
+### 输出示例
 
-## 局限性
+### 局限性
 
 由于计算资源、数据规模等因素限制，当前阶段 LawGPT 存在诸多局限性：
 
@@ -97,9 +153,9 @@ conda activate lawgpt
 
 ## 问题反馈
 
-如有问题，请于 GitHub Issue 中提交。请礼貌讨论，构建和谐交流环境。
+如有问题，请在 GitHub Issue 中提交。请礼貌讨论，构建和谐社区。
 
-> **协作者科研之余全力推进项目进展，由于人力有限难以实时反馈，给诸君带来不便，敬请谅解！**
+> **协作者科研之余推进项目进展，由于人力有限难以实时反馈，给诸君带来不便，敬请谅解！**
 
 ## 致谢
 

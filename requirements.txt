@@ -1,0 +1,12 @@
+accelerate
+appdirs
+bitsandbytes
+black
+black[jupyter]
+datasets
+fire
+git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08
+git+https://github.com/huggingface/transformers.git
+gradio
+sentencepiece
+wandb

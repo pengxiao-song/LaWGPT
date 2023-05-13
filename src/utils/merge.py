@@ -48,4 +48,4 @@ deloreanized_sd = {
     if "lora" not in k
 }
 
-LlamaForCausalLM.save_pretrained(base_model, '../models/LawGPT_step_1', state_dict=deloreanized_sd, max_shard_size="400MB")
+LlamaForCausalLM.save_pretrained(base_model, '../models/legal-base-7b', state_dict=deloreanized_sd, max_shard_size="400MB")
