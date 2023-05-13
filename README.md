@@ -24,14 +24,14 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 ## 更新
 
-- 🌟 2023/05/13：公开发布 <a href=""><img src="https://img.shields.io/badge/Model-legal--base--7b-blue"></a> <a href=""><img src="https://img.shields.io/badge/Model-lawgpt--7b--beta1.0-yellow"></a>
+- 🌟 2023/05/13：公开发布 <a href=""><img src="https://img.shields.io/badge/Model-Legal--Base--7B-blue"></a> <a href=""><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.0-yellow"></a>
   
-  - **legal-base-7b**：法律基座模型，使用 50w 中文裁判文书数据二次预训练
+  - **Legal-Base-7B**：法律基座模型，使用 50w 中文裁判文书数据二次预训练
   
-  - **lawgpt-7b-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集指令精调
+  - **LaWGPT-7B-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集指令精调
   
-- 🌟 2023/04/12：内部测试 <a href=""><img src="https://img.shields.io/badge/Model-lawgpt--7b--alpha1.0-green"></a>
-  - **lawgpt-7b-alpha**：在 Chinese-LLaMA-7B 的基础上直接构造 30w 法律问答数据集指令精调
+- 🌟 2023/04/12：内部测试 <a href=""><img src="https://img.shields.io/badge/Model-lawgpt--7b--alpha-yellow"></a>
+  - **LaWGPT-7B-alpha**：在 Chinese-LLaMA-7B 的基础上直接构造 30w 法律问答数据集指令精调
 
 ## 快速开始
 
@@ -44,8 +44,12 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    pip install -r requirements.txt
    ```
 
-2. 合并模型权重
+2. 合并模型权重（可选）
    
+   如果您想使用 LaWGPT-7B-alpha 模型，可跳过改步，直接进入步骤3.
+
+   如果您想使用 LaWGPT-7B-beta1.0 模型：
+
    由于 [LLaMA](https://github.com/facebookresearch/llama) 和 [Chinese-LLaMA](https://github.com/ymcui/Chinese-LLaMA-Alpaca) 均未开源模型权重。根据相应开源许可，**本项目只能发布 LoRA 权重**，无法发布完整的模型权重，请各位谅解。
    
    本项目给出[合并方式](https://github.com/pengxiao-song/LaWGPT/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6)，请各位获取原版权重后自行重构模型。
@@ -61,14 +65,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    sh src/scripts/generate.sh
    ```
    
-   接入服务链接：
-
-   ```
-   Running on local URL:  http://0.0.0.0:7862
-   Running on public URL: https://06e989c08fe171f47c.gradio.live
-   ```
-   
-   呈现效果：
+   接入服务，呈现效果：
 
    <p align="center">
       <img src="./assets/demo/demo.png" width="80%" >
@@ -101,9 +98,11 @@ LaWGPT
 
 ## 数据构建
 
-本项目汇总了互联网上的中文法律数据源
+本项目汇总互联网上的中文法律数据源
 
-根据 [Stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca#data-generation-process) 和 [self-instruct](https://github.com/yizhongw/self-instruct) 方式数据生成
+1. 初步生成数据：根据 [Stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca#data-generation-process) 和 [self-instruct](https://github.com/yizhongw/self-instruct) 方式生成对话问答数据
+2. 基于知识生成数据：通过 Knowledge-based Self-Instruct 方式基于中文法律结构化知识生成数据。
+3. 引入 ChatGPT 清洗数据，并辅助构造高质量数据集。
 
 ## 模型训练
 
@@ -114,9 +113,12 @@ LaWGPT
 
 ### 二次训练流程
 
+1. 参考 `data/example_instruction_train.json` 构造指令微调数据集
+2. 运行 `src/scripts/finetune.sh` 
+
 ### 指令精调步骤
 
-1. 参考 `data/example_instruction.json` 构造指令微调数据集
+1. 参考 `data/example_instruction_tune.json` 构造指令微调数据集
 2. 运行 `src/scripts/finetune.sh` 
 
 ### 计算资源
@@ -126,6 +128,24 @@ LaWGPT
 ## 模型评估
 
 ### 输出示例
+
+<details><summary>问题：欠了信用卡的钱还不上要坐牢吗？</summary>
+
+![](assets/demo/example-01.jpeg)
+
+</details>
+
+<details><summary>问题：民间借贷受国家保护的合法利息是多少?</summary>
+
+![](assets/demo/example-02.jpeg)
+
+</details>
+
+<details><summary>问题：你能否写一段抢劫罪罪名的案情描述？</summary>
+
+![](assets/demo/example-03.jpg)
+
+</details>
 
 ### 局限性
 
@@ -153,13 +173,16 @@ LaWGPT
 
 ## 问题反馈
 
-如有问题，请在 GitHub Issue 中提交。请礼貌讨论，构建和谐社区。
+如有问题，请在 GitHub Issue 中提交。
 
-> **协作者科研之余推进项目进展，由于人力有限难以实时反馈，给诸君带来不便，敬请谅解！**
+- 提交问题之前，建议查阅 FAQ 及以往的 issue 看是否能解决您的问题。
+- 请礼貌讨论，构建和谐社区。
+
+协作者科研之余推进项目进展，由于人力有限难以实时反馈，给诸君带来不便，敬请谅解！
 
 ## 致谢
 
-本项目基于如下开源项目展开，在此对相关项目和研究开发人员表示诚挚的感谢：
+本项目基于如下开源项目展开，在此对相关项目和开发人员表示诚挚的感谢：
 
 - Chinese-LLaMA-Alpaca: https://github.com/ymcui/Chinese-LLaMA-Alpaca
 - LLaMA: https://github.com/facebookresearch/llama
@@ -167,6 +190,8 @@ LaWGPT
 - alpaca-lora: https://github.com/tloen/alpaca-lora
 - ChatGLM-6B: https://github.com/THUDM/ChatGLM-6B
 
+此外，本项目基于诸多开源数据集展开，详见[数据构建]()，在此一并表示感谢。
+
 ## 引用
 
-如果您觉得我们的工作对您有所帮助，请考虑引用如下内容
+如果您觉得我们的工作对您有所帮助，请考虑引用该项目
