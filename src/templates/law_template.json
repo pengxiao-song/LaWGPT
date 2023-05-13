@@ -1,0 +1,6 @@
+{
+    "description": "Template used by Law Instruction Tuning",
+    "prompt_input": "下面是一个问题，运用法学知识来正确回答提问.\n### 问题:\n{instruction}\n### 回答:\n",
+    "prompt_no_input": "下面是一个问题，运用法学知识来正确回答提问.\n### 问题:\n{instruction}\n### 回答:\n",
+    "response_split": "### 回答:"
+}

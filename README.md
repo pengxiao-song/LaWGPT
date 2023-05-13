@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="./assets/logo/lawgpt2.jpeg">
-    <img src="./assets/logo/lawgpt2.jpeg" width="70%" >
+    <img src="./assets/logo/lawgpt2.jpeg" width="80%" >
   </a>
 </p>
 
@@ -10,24 +10,25 @@
     <a href=""><img src="https://img.shields.io/badge/version-alpha1.0-blue"></a>
     <a href=""><img src="https://img.shields.io/github/last-commit/pengxiao-song/lawgpt"></a>
     <a href="https://www.lamda.nju.edu.cn/"><img src="https://img.shields.io/badge/support-NJU--LAMDA-9cf.svg"></a>
-    
 </p>
 
-LaWGPT 是一系列中文法律知识增强的开源大语言模型。
+LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
-该系列模型在 Chinese-LLaMA 的基础上扩充了法律领域词表，并使用大规模中文法律文书、中文法典进行预训练，增强了模型在法律领域的基础语义理解能力。在此基础上，构造多种法律领域对话问答数据集进行指令精调，提升了模型对法律内容的理解和执行能力。
+该系列模型在通用中文基座模型（如 Chinese-LLaMA、ChatGLM 等）的基础上扩充法律领域专有词表、**大规模中文法律语料预训练**，增强了大模型在法律领域的基础语义理解能力。在此基础上，**构造法律领域对话问答数据集、中国司法考试数据集进行指令精调**，提升了模型对法律内容的理解和执行能力。
 
 详细内容请参考技术报告。
 
 ---
 
-本项目持续开展，后续会相继开源法律领域对话问答数据集及 LaWGPT-13B 的模型。
-
+本项目持续开展，法律领域专有数据集及系列模型后续相继开源，敬请关注。
 
 ## 更新
 
-- 💦 2023/04/25：公开发布 LawGPT-7B alpha1.0（内测版）供初步测试使用
-  - 基于 Chinese-LLaMA 使用 50w 中文裁判文书数据二次预训练
+- 🔥🔥🔥 2023/05/13：公开发布 legal-base-7b，lawgpt-7b-beta1.0
+  - legal-base-7b：基座 Chinese-LLaMA-7B ，基于 50w 中文裁判文书数据二次预训练
+  - lawgpt-7b-beta1.0：基于 legal-base-7b，构造 30w 高质量法律问答数据集指令精调
+- 🔥🔥🔥 2023/04/12：内部测试 lawgpt-7b-alpha
+  - lawgpt-7b-alpha：基座 Chinese-LLaMA-7B ，构造 30w 法律问答数据集指令精调
 
 ## 快速开始
 
@@ -35,7 +36,7 @@ LaWGPT 是一系列中文法律知识增强的开源大语言模型。
 
 ```bash
 git clone git@github.com:pengxiao-song/LaWGPT.git
-cd LawGPT
+cd LaWGPT
 conda env create -f environment.yml
 conda activate lawgpt
 ```
@@ -47,6 +48,10 @@ conda activate lawgpt
 
 
 ## 数据构建
+
+本项目汇总了互联网上的中文法律数据源
+
+根据 [Stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca#data-generation-process) 和 [self-instruct](https://github.com/yizhongw/self-instruct) 方式数据生成
 
 ## 模型训练
 
@@ -98,15 +103,13 @@ conda activate lawgpt
 
 ## 致谢
 
-本项目基于部分开源项目及公开数据集展开，在此对相关项目和研究开发人员表示诚挚的感谢：
+本项目基于如下开源项目展开，在此对相关项目和研究开发人员表示诚挚的感谢：
 
 - Chinese-LLaMA-Alpaca: https://github.com/ymcui/Chinese-LLaMA-Alpaca
 - LLaMA: https://github.com/facebookresearch/llama
 - Alpaca: https://github.com/tatsu-lab/stanford_alpaca
 - alpaca-lora: https://github.com/tloen/alpaca-lora
 - ChatGLM-6B: https://github.com/THUDM/ChatGLM-6B
-
-
 
 ## 引用
 
