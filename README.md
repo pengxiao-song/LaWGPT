@@ -159,10 +159,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ## 协作者
 
-本项目由[南京大学机器学习与数据挖掘研究所（LAMDA）](https://www.lamda.nju.edu.cn/CH.MainPage.ashx)支持。
-
-如下各位合作开展（按字母序排列）：[金苡萱](https://www.lamda.nju.edu.cn/jinyx/)、[宋鹏霄](https://www.lamda.nju.edu.cn/songpx/)、[杨骁文](https://github.com/njuyxw)，由[郭兰哲](https://www.lamda.nju.edu.cn/guolz/)老师、[李宇峰](https://cs.nju.edu.cn/liyf/index.htm)老师指导。
-
+如下各位合作开展（按字母序排列）：[@cainiao](https://github.com/herobrine19)、[@njuyxw](https://github.com/njuyxw)、[@pengxiao-song](https://github.com/pengxiao-song)。
 ## 免责声明
 
 请各位严格遵守如下约定：
