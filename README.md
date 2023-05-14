@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-    <a href=""><img src="https://img.shields.io/badge/version-alpha1.0-blue"></a>
+    <a href=""><img src="https://img.shields.io/badge/version-beta1.0-blue"></a>
     <a href=""><img src="https://img.shields.io/github/last-commit/pengxiao-song/lawgpt"></a>
     <a href="https://www.lamda.nju.edu.cn/"><img src="https://img.shields.io/badge/support-NJU--LAMDA-9cf.svg"></a>
 </p>
@@ -24,13 +24,16 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 ## 更新
 
-- 🌟 2023/05/13：公开发布 <a href=""><img src="https://img.shields.io/badge/Model-Legal--Base--7B-blue"></a> <a href=""><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.0-yellow"></a>
+- 🌟 2023/05/13：公开发布 
+  <a href=""><img src="https://img.shields.io/badge/Model-Legal--Base--7B-blue"></a> 
+  <a href=""><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.0-yellow"></a>
   
   - **Legal-Base-7B**：法律基座模型，使用 50w 中文裁判文书数据二次预训练
   
-  - **LaWGPT-7B-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集指令精调
+  - **LaWGPT-7B-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集基于 Legal-Base-7B 指令精调
   
-- 🌟 2023/04/12：内部测试 <a href=""><img src="https://img.shields.io/badge/Model-Lawgpt--7B--alpha-yellow"></a>
+- 🌟 2023/04/12：内部测试
+  <a href=""><img src="https://img.shields.io/badge/Model-Lawgpt--7B--alpha-yellow"></a>
   - **LaWGPT-7B-alpha**：在 Chinese-LLaMA-7B 的基础上直接构造 30w 法律问答数据集指令精调
 
 ## 快速开始
@@ -157,9 +160,12 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 请诸君在使用前了解上述问题，以免造成误解和不必要的麻烦。
 
+
 ## 协作者
 
-如下各位合作开展（按字母序排列）：[@cainiao](https://github.com/herobrine19)、[@njuyxw](https://github.com/njuyxw)、[@pengxiao-song](https://github.com/pengxiao-song)。
+如下各位合作开展（按字母序排列）：[@cainiao](https://github.com/herobrine19)、[@njuyxw](https://github.com/njuyxw)、[@pengxiao-song](https://github.com/pengxiao-song)
+
+
 ## 免责声明
 
 请各位严格遵守如下约定：
@@ -167,6 +173,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 1. 本项目任何资源**仅供学术研究使用，严禁任何商业用途**。
 2. 模型输出受多种不确定性因素影响，本项目当前无法保证其准确性，**严禁用于真实法律场景**。
 3. 本项目不承担任何法律责任，亦不对因使用相关资源和输出结果而可能产生的任何损失承担责任。
+
 
 ## 问题反馈
 
@@ -176,6 +183,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 - 请礼貌讨论，构建和谐社区。
 
 协作者科研之余推进项目进展，由于人力有限难以实时反馈，给诸君带来不便，敬请谅解！
+
 
 ## 致谢
 
@@ -187,7 +195,8 @@ LawGPT 系列模型的训练过程分为两个阶段：
 - alpaca-lora: https://github.com/tloen/alpaca-lora
 - ChatGLM-6B: https://github.com/THUDM/ChatGLM-6B
 
-此外，本项目基于诸多开源数据集展开，详见[数据汇总]()，在此一并表示感谢。
+此外，本项目基于诸多开源数据集展开，详见 [Awesome Chinese Legal Resources](https://github.com/pengxiao-song/awesome-chinese-legal-resources)，一并表示感谢。
+
 
 ## 引用
 
