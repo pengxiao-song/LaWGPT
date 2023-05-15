@@ -7,9 +7,10 @@
 </p>
 
 <p align="center">
+    <a href="https://github.com/pengxiao-song/LaWGPT/wiki"><img src="https://img.shields.io/badge/docs-Wiki-brightgreen"></a>
     <a href=""><img src="https://img.shields.io/badge/version-beta1.0-blue"></a>
     <a href=""><img src="https://img.shields.io/github/last-commit/pengxiao-song/lawgpt"></a>
-    <a href="https://www.lamda.nju.edu.cn/"><img src="https://img.shields.io/badge/support-NJU--LAMDA-9cf.svg"></a>
+    <!-- <a href="https://www.lamda.nju.edu.cn/"><img src="https://img.shields.io/badge/support-NJU--LAMDA-9cf.svg"></a> -->
 </p>
 
 LaWGPT 是一系列基于中文法律知识的开源大语言模型。
@@ -24,7 +25,9 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 ## 更新
 
-- 🌟 2023/05/13：公开发布 
+- 🪴 2023/05/15：发布 [中文法律数据源汇总（Awesome Chinese Legal Resources）](https://github.com/pengxiao-song/awesome-chinese-legal-resources) 和 [法律领域词表](https://github.com/pengxiao-song/LaWGPT/blob/main/resources/legal_vocab.txt)
+
+- 🌟 2023/05/13：公开发布
   <a href=""><img src="https://img.shields.io/badge/Model-Legal--Base--7B-blue"></a> 
   <a href=""><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.0-yellow"></a>
   
@@ -195,7 +198,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 - alpaca-lora: https://github.com/tloen/alpaca-lora
 - ChatGLM-6B: https://github.com/THUDM/ChatGLM-6B
 
-此外，本项目基于诸多开源数据集展开，详见 [Awesome Chinese Legal Resources](https://github.com/pengxiao-song/awesome-chinese-legal-resources)，一并表示感谢。
+此外，本项目基于开放数据资源，详见 [Awesome Chinese Legal Resources](https://github.com/pengxiao-song/awesome-chinese-legal-resources)，一并表示感谢。
 
 
 ## 引用
