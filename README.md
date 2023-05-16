@@ -119,7 +119,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ### 二次训练流程
 
-1. 参考 `src/data/example_instruction_train.json` 构造指令微调数据集
+1. 参考 `src/data/example_instruction_train.json` 构造二次训练数据集
 2. 运行 `src/scripts/train_lora.sh` 
 
 ### 指令精调步骤
