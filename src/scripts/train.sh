@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WORLD_SIZE=8 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 --master_port=1235 train.py \
+WORLD_SIZE=8 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 --master_port=1235 train_lora.py \
     --base_model '../models/base_models/chinese_llama_7b' \
     --data_path '' \
     --output_dir '../models/lora_weights' \

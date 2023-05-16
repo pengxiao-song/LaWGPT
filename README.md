@@ -120,7 +120,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 ### 二次训练流程
 
 1. 参考 `data/example_instruction_train.json` 构造指令微调数据集
-2. 运行 `src/scripts/train.sh` 
+2. 运行 `src/scripts/train_lora.sh` 
 
 ### 指令精调步骤
 
@@ -135,9 +135,21 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ### 输出示例
 
-<details><summary>问题：欠了信用卡的钱还不上要坐牢吗？</summary>
+<details><summary>问题：请给出判决意见。</summary>
 
-![](assets/demo/example-01.jpeg)
+![](assets/demo/example-05.jpeg)
+
+</details>
+
+<details><summary>问题：请介绍赌博罪的定义。</summary>
+
+![](assets/demo/example-06.jpeg)
+
+</details>
+
+<details><summary>问题：请问加班工资怎么算？</summary>
+
+![](assets/demo/example-04.jpeg)
 
 </details>
 
@@ -147,11 +159,18 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 </details>
 
-<details><summary>问题：你能否写一段抢劫罪罪名的案情描述？</summary>
+<details><summary>问题：欠了信用卡的钱还不上要坐牢吗？</summary>
 
-![](assets/demo/example-03.jpg)
+![](assets/demo/example-01.jpeg)
 
 </details>
+
+<details><summary>问题：你能否写一段抢劫罪罪名的案情描述？</summary>
+
+![](assets/demo/example-03.jpeg)
+
+</details>
+
 
 ### 局限性
 
