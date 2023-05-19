@@ -1,5 +1,5 @@
-
-CUDA_VISIBLE_DEVICES=1 python generate.py \
+#!/bin/bash
+CUDA_VISIBLE_DEVICES=1 python src/generate.py \
     --load_8bit \
     --base_model 'minlik/chinese-llama-7b-merged' \
     --lora_weights 'entity303/lawgpt-lora-7b' \
