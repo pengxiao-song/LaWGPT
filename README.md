@@ -129,7 +129,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ### 计算资源
 
-8 张 Tesla V100-SXM2-32GB
+8 张 Tesla V100-SXM2-32GB ：二次训练阶段耗时约 24h / epoch，微调阶段耗时约 12h / epoch
 
 ## 模型评估
 
