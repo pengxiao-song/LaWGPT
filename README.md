@@ -44,10 +44,23 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 1. 准备代码，创建环境
 
    ```bash
+   # clone 代码
    git clone git@github.com:pengxiao-song/LaWGPT.git
    cd LaWGPT
+
+   # 切换到 dev 分支
+   checkout dev
+
+   # 创建环境
+   conda create -n lawgpt python=3.10 -y
    conda activate lawgpt
    pip install -r requirements.txt
+
+   # 执行ui脚本(脚本会下载预训练模型,预计占用15GB)
+   bash scripts/webui.sh
+
+   # 打开浏览器,访问 http://127.0.0.1:7860/
+   # 在Instructions框输入法律问题,点击"Submit"按钮, 等待模型生成答案
    ```
 
 2. 合并模型权重（可选）
