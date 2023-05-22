@@ -6,13 +6,13 @@ __pycache__/
 *.so
 *.ipynb
 .ipynb_checkpoints
-models/*
-!models/.gitkeep
+models/base_models/*
 !models/base_models/.gitkeep
+models/lora_weights/*
 !models/lora_weights/.gitkeep
 outputs/*
 !outputs/.gitkeep
 data/*
 !data/.gitkeep
 wandb/
-**/.DS_Store
+.DS_Store
