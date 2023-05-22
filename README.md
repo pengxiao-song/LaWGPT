@@ -49,7 +49,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    cd LaWGPT
 
    # 切换到 dev 分支
-   checkout dev
+   git checkout dev
 
    # 创建环境
    conda create -n lawgpt python=3.10 -y
