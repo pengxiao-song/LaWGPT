@@ -1,4 +1,4 @@
-# LaWGPT：基于中文法律知识的大语言模型
+sdhajkhkjNKJFBLVNKNVALKDMNKlqjiojqrijlhwfhbgbv# LaWGPT：基于中文法律知识的大语言模型
 
 <p align="center">
   <a href="assets/logo/lawgpt.jpeg">
