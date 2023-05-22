@@ -95,7 +95,7 @@ def main(
 
     def evaluate(
         instruction,
-        input=None,
+        # input=None,
         temperature=0.1,
         top_p=0.75,
         top_k=40,
@@ -104,6 +104,7 @@ def main(
         stream_output=False,
         **kwargs,
     ):
+        input=None
         prompt = prompter.generate_prompt(instruction, input)
         inputs = tokenizer(prompt, return_tensors="pt")
         input_ids = inputs["input_ids"].to(device)
@@ -175,9 +176,9 @@ def main(
             gr.components.Textbox(
                 lines=2,
                 label="Instruction",
-                placeholder="Tell me about alpacas.",
+                placeholder="此处输入法律相关问题",
             ),
-            gr.components.Textbox(lines=2, label="Input", placeholder="none"),
+            # gr.components.Textbox(lines=2, label="Input", placeholder="none"),
             gr.components.Slider(
                 minimum=0, maximum=1, value=0.1, label="Temperature"
             ),
@@ -197,7 +198,7 @@ def main(
         ],
         outputs=[
             gr.inputs.Textbox(
-                lines=5,
+                lines=8,
                 label="Output",
             )
         ],

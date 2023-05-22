@@ -15,4 +15,5 @@ outputs/*
 data/*
 !data/.gitkeep
 wandb/
+flagged/
 .DS_Store
