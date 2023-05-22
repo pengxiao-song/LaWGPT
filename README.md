@@ -56,7 +56,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    ```
 2. **启动 web ui（可选，易于调节参数）**
 
-   - 首先，执行服务启动脚本：`bash ./scripts/webui.sh`
+   - 首先，执行服务启动脚本：`bash scripts/webui.sh`
 
    - 其次，访问 http://127.0.0.1:7860 ：
    <p align="center">
