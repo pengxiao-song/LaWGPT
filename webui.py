@@ -6,7 +6,7 @@ import gradio as gr
 import torch
 import transformers
 from peft import PeftModel
-from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer
+from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer, AutoModel, AutoTokenizer, AutoModelForCausalLM
 
 from utils.callbacks import Iteratorize, Stream
 from utils.prompter import Prompter
@@ -19,14 +19,14 @@ else:
 try:
     if torch.backends.mps.is_available():
         device = "mps"
-except:  # noqa: E722
+except: 
     pass
 
 
 def main(
     load_8bit: bool = False,
     base_model: str = "",
-    lora_weights: str = "tloen/alpaca-lora-7b",
+    lora_weights: str = "",
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
     share_gradio: bool = False,
@@ -45,33 +45,41 @@ def main(
             torch_dtype=torch.float16,
             device_map="auto",
         )
-        model = PeftModel.from_pretrained(
-            model,
-            lora_weights,
-            torch_dtype=torch.float16,
-        )
+        try:
+            model = PeftModel.from_pretrained(
+                model,
+                lora_weights,
+                torch_dtype=torch.float16,
+            )
+        except:
+            print("*"*50, "\n Attention! No Lora Weights \n", "*"*50)
     elif device == "mps":
         model = LlamaForCausalLM.from_pretrained(
             base_model,
             device_map={"": device},
             torch_dtype=torch.float16,
         )
-        model = PeftModel.from_pretrained(
-            model,
-            lora_weights,
-            device_map={"": device},
-            torch_dtype=torch.float16,
-        )
+        try:
+            model = PeftModel.from_pretrained(
+                model,
+                lora_weights,
+                device_map={"": device},
+                torch_dtype=torch.float16,
+            )
+        except:
+            print("*"*50, "\n Attention! No Lora Weights \n", "*"*50)
     else:
         model = LlamaForCausalLM.from_pretrained(
-            base_model, 
-            device_map={"": device}, low_cpu_mem_usage=True
+            base_model, device_map={"": device}, low_cpu_mem_usage=True
         )
-        model = PeftModel.from_pretrained(
-            model,
-            lora_weights,
-            device_map={"": device},
-        )
+        try:
+            model = PeftModel.from_pretrained(
+                model,
+                lora_weights,
+                device_map={"": device},
+            )
+        except:
+            print("*"*50, "\n Attention! No Lora Weights \n", "*"*50)
 
     # unwind broken decapoda-research config
     model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
@@ -87,15 +95,16 @@ def main(
 
     def evaluate(
         instruction,
-        input=None,
+        # input=None,
         temperature=0.1,
         top_p=0.75,
         top_k=40,
-        num_beams=1,
-        max_new_tokens=256,
-        stream_output=True,
+        num_beams=4,
+        max_new_tokens=128,
+        stream_output=False,
         **kwargs,
     ):
+        input=None
         prompt = prompter.generate_prompt(instruction, input)
         inputs = tokenizer(prompt, return_tensors="pt")
         input_ids = inputs["input_ids"].to(device)
@@ -144,6 +153,7 @@ def main(
                         break
 
                     yield prompter.get_response(decoded_output)
+            print(decoded_output)
             return  # early return for stream_output
 
         # Without streaming
@@ -157,6 +167,7 @@ def main(
             )
         s = generation_output.sequences[0]
         output = tokenizer.decode(s)
+        print(output)
         yield prompter.get_response(output)
 
     gr.Interface(
@@ -165,11 +176,11 @@ def main(
             gr.components.Textbox(
                 lines=2,
                 label="Instruction",
-                placeholder="Tell me about alpacas.",
+                placeholder="此处输入法律相关问题",
             ),
-            gr.components.Textbox(lines=2, label="Input", placeholder="none"),
+            # gr.components.Textbox(lines=2, label="Input", placeholder="none"),
             gr.components.Slider(
-                minimum=0, maximum=1, value=1.0, label="Temperature"
+                minimum=0, maximum=1, value=0.1, label="Temperature"
             ),
             gr.components.Slider(
                 minimum=0, maximum=1, value=0.75, label="Top p"
@@ -178,23 +189,22 @@ def main(
                 minimum=0, maximum=100, step=1, value=40, label="Top k"
             ),
             gr.components.Slider(
-                minimum=1, maximum=4, step=1, value=4, label="Beams"
+                minimum=1, maximum=4, step=1, value=1, label="Beams"
             ),
             gr.components.Slider(
                 minimum=1, maximum=2000, step=1, value=256, label="Max tokens"
             ),
-            gr.components.Checkbox(label="Stream output", value=True),
+            gr.components.Checkbox(label="Stream output",  value=True),
         ],
         outputs=[
             gr.inputs.Textbox(
-                lines=5,
+                lines=8,
                 label="Output",
             )
         ],
         title="🦙🌲 LaWGPT",
-        description="",  # noqa: E501
+        description="",
     ).queue().launch(server_name="0.0.0.0", share=share_gradio)
-    # Old testing code follows.
 
 
 if __name__ == "__main__":

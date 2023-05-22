@@ -24,6 +24,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 本项目持续开展，法律领域数据集及系列模型后续相继开源，敬请关注。
 
 ## 更新
+- 🛠️ 2023/05/22：项目主分支结构调整，详见[项目结构](https://github.com/pengxiao-song/LaWGPT#项目结构)
 
 - 🪴 2023/05/15：发布 [中文法律数据源汇总（Awesome Chinese Legal Resources）](https://github.com/pengxiao-song/awesome-chinese-legal-resources) 和 [法律领域词表](https://github.com/pengxiao-song/LaWGPT/blob/main/resources/legal_vocab.txt)
 
@@ -44,13 +45,25 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 1. 准备代码，创建环境
 
    ```bash
+   # 下载代码
    git clone git@github.com:pengxiao-song/LaWGPT.git
    cd LaWGPT
+
+   # 创建环境
+   conda create -n lawgpt python=3.10 -y
    conda activate lawgpt
    pip install -r requirements.txt
+
+   # 启动可视化脚本（自动下载预训练模型约15GB）
+   bash ./scripts/webui.sh
    ```
 
-2. 合并模型权重（可选）
+2. 访问 http://127.0.0.1:7860 ：
+   <p align="center">
+      <img src="./assets/demo/demo.png" width="80%" >
+   </p>
+
+3. 合并模型权重（可选）
    
    **如果您想使用 LaWGPT-7B-alpha 模型，可跳过改步，直接进入步骤3.**
 
@@ -61,44 +74,28 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    本项目给出[合并方式](https://github.com/pengxiao-song/LaWGPT/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6)，请各位获取原版权重后自行重构模型。
 
 
-3. 启动示例
-
-   启动本地服务：
-
-   ```bash
-   conda activate lawgpt
-   cd LaWGPT
-   sh src/scripts/generate.sh
-   ```
-   
-   接入服务：
-
-   <p align="center">
-      <img src="./assets/demo/demo.png" width="80%" >
-   </p>
-
-
 ## 项目结构
 
-```bash
+```bash    
 LaWGPT
-├── assets # 项目静态资源
-├── data   # 语料及精调数据
-├── tools  # 数据清洗等工具
+├── assets    # 静态资源
+├── resources # 项目资源
+├── models    # 基座模型及 lora 权重
+│   ├── base_models
+│   └── lora_weights
+├── outputs   # 指令微调的输出权重
+├── data      # 实验数据
+├── scripts   # 脚本目录
+│   ├── finetune.sh # 指令微调脚本
+│   └── webui.sh    # 启动服务脚本
+├── templates # prompt 模板
+├── tools     # 工具包
+├── utils
+├── train_clm.py  # 二次训练
+├── finetune.py   # 指令微调
+├── webui.py      # 启动服务
 ├── README.md
-├── requirements.txt
-└── src    # 源码
-    ├── finetune.py
-    ├── generate.py
-    ├── models  # 基座模型及 Lora 权重
-    │   ├── base_models
-    │   └── lora_weights
-    ├── outputs
-    ├── scripts # 脚本文件
-    │   ├── finetune.sh # 指令微调
-    │   └── generate.sh # 服务创建
-    ├── templates
-    └── utils
+└── requirements.txt
 ```
 
 
@@ -119,13 +116,13 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ### 二次训练流程
 
-1. 参考 `src/data/example_instruction_train.json` 构造二次训练数据集
-2. 运行 `src/scripts/train_lora.sh` 
+1. 参考 `resources/example_instruction_train.json` 构造二次训练数据集
+2. 运行 `scripts/train_clm.sh` 
 
 ### 指令精调步骤
 
-1. 参考 `src/data/example_instruction_tune.json` 构造指令微调数据集
-2. 运行 `src/scripts/finetune.sh` 
+1. 参考 `resources/example_instruction_tune.json` 构造指令微调数据集
+2. 运行 `scripts/finetune.sh` 
 
 ### 计算资源
 

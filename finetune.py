@@ -7,6 +7,12 @@ import torch
 import transformers
 from datasets import load_dataset
 
+"""
+Unused imports:
+import torch.nn as nn
+import bitsandbytes as bnb
+"""
+
 from peft import (
     LoraConfig,
     get_peft_model,
@@ -15,45 +21,41 @@ from peft import (
     set_peft_model_state_dict,
 )
 from transformers import LlamaForCausalLM, LlamaTokenizer
+
 from utils.prompter import Prompter
 
 
 def train(
     # model/data params
-    base_model: str = "./models/base_models/your_base_model_dir",
-    data_path: str = "./data/your_data.json",
-    output_dir: str = "./outputs/your_version_dir",
-
+    base_model: str = "",  # the only required argument
+    data_path: str = "yahma/alpaca-cleaned",
+    output_dir: str = "./lora-alpaca",
     # training hyperparams
     batch_size: int = 128,
     micro_batch_size: int = 4,
-    num_epochs: int = 10,
+    num_epochs: int = 3,
     learning_rate: float = 3e-4,
-    cutoff_len: int = 512,
+    cutoff_len: int = 256,
     val_set_size: int = 2000,
-
     # lora hyperparams
     lora_r: int = 8,
     lora_alpha: int = 16,
     lora_dropout: float = 0.05,
-    lora_target_modules: List[str] = ["q_proj", "v_proj",],
-
+    lora_target_modules: List[str] = [
+        "q_proj",
+        "v_proj",
+    ],
     # llm hyperparams
     train_on_inputs: bool = True,  # if False, masks out inputs in loss
     add_eos_token: bool = True,
     group_by_length: bool = False,  # faster, but produces an odd training loss curve
-
     # wandb params
     wandb_project: str = "",
     wandb_run_name: str = "",
     wandb_watch: str = "",  # options: false | gradients | all
     wandb_log_model: str = "",  # options: false | true
-
-    # either training checkpoint or final adapter
-    resume_from_checkpoint: str = None,
-
-    # The prompt template to use, will default to alpaca.
-    prompt_template_name: str = "alpaca",
+    resume_from_checkpoint: str = None,  # either training checkpoint or final adapter
+    prompt_template_name: str = "alpaca",  # The prompt template to use, will default to alpaca.
 ):
     if int(os.environ.get("LOCAL_RANK", 0)) == 0:
         print(
@@ -81,11 +83,13 @@ def train(
             f"resume_from_checkpoint: {resume_from_checkpoint or False}\n"
             f"prompt template: {prompt_template_name}\n"
         )
+    assert (
+        base_model
+    ), "Please specify a --base_model, e.g. --base_model='huggyllama/llama-7b'"
     gradient_accumulation_steps = batch_size // micro_batch_size
 
     prompter = Prompter(prompt_template_name)
 
-    # Configure device and distributed training
     device_map = "auto"
     world_size = int(os.environ.get("WORLD_SIZE", 1))
     ddp = world_size != 1
@@ -95,8 +99,8 @@ def train(
 
     # Check if parameter passed or if set within environ
     use_wandb = len(wandb_project) > 0 or (
-        "WANDB_PROJECT" in os.environ and len(os.environ["WANDB_PROJECT"]) > 0)
-
+        "WANDB_PROJECT" in os.environ and len(os.environ["WANDB_PROJECT"]) > 0
+    )
     # Only overwrite environ if wandb param passed
     if len(wandb_project) > 0:
         os.environ["WANDB_PROJECT"] = wandb_project
@@ -113,21 +117,13 @@ def train(
     )
 
     tokenizer = LlamaTokenizer.from_pretrained(base_model)
-    tokenizer.bos_token_id = 1
-    tokenizer.eos_token_id = 2
-    bos = tokenizer.bos_token_id
-    eos = tokenizer.eos_token_id
-    pad = tokenizer.pad_token_id
-
-    print("pre-trained model's BOS EOS and PAD token id:",
-          bos, eos, pad, " => It should be 1,2,none")
 
     tokenizer.pad_token_id = (
         0  # unk. we want this to be different from the eos token
     )
     tokenizer.padding_side = "left"  # Allow batched inference
 
-    def tokenize(prompt, add_eos_token=True):
+    def tokenize(prompt):
         # there's probably a way to do this with the tokenizer settings
         # but again, gotta move fast
         result = tokenizer(
@@ -212,13 +208,18 @@ def train(
         else:
             print(f"Checkpoint {checkpoint_name} not found")
 
-    # Be more transparent about the % of trainable params.
-    model.print_trainable_parameters()
+    model.print_trainable_parameters()  # Be more transparent about the % of trainable params.
 
     if val_set_size > 0:
-        train_val = data["train"].train_test_split(test_size=val_set_size, shuffle=True, seed=42)
-        train_data = (train_val["train"].shuffle().map(generate_and_tokenize_prompt))
-        val_data = (train_val["test"].shuffle().map(generate_and_tokenize_prompt))
+        train_val = data["train"].train_test_split(
+            test_size=val_set_size, shuffle=True, seed=42
+        )
+        train_data = (
+            train_val["train"].shuffle().map(generate_and_tokenize_prompt)
+        )
+        val_data = (
+            train_val["test"].shuffle().map(generate_and_tokenize_prompt)
+        )
     else:
         train_data = data["train"].shuffle().map(generate_and_tokenize_prompt)
         val_data = None
@@ -235,7 +236,7 @@ def train(
         args=transformers.TrainingArguments(
             per_device_train_batch_size=micro_batch_size,
             gradient_accumulation_steps=gradient_accumulation_steps,
-            warmup_steps=100,
+            warmup_ratio=0.1,
             num_train_epochs=num_epochs,
             learning_rate=learning_rate,
             fp16=True,
@@ -243,10 +244,10 @@ def train(
             optim="adamw_torch",
             evaluation_strategy="steps" if val_set_size > 0 else "no",
             save_strategy="steps",
-            eval_steps=100 if val_set_size > 0 else None,
-            save_steps=100,
+            eval_steps=50 if val_set_size > 0 else None,
+            save_steps=50,
             output_dir=output_dir,
-            save_total_limit=3,
+            save_total_limit=5,
             load_best_model_at_end=True if val_set_size > 0 else False,
             ddp_find_unused_parameters=False if ddp else None,
             group_by_length=group_by_length,
@@ -273,7 +274,9 @@ def train(
 
     model.save_pretrained(output_dir)
 
-    print("\n If there's a warning about missing keys above, please disregard :)")
+    print(
+        "\n If there's a warning about missing keys above, please disregard :)"
+    )
 
 
 if __name__ == "__main__":
