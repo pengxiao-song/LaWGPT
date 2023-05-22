@@ -94,15 +94,16 @@ def train(
         gradient_accumulation_steps = gradient_accumulation_steps // world_size
 
     # Check if parameter passed or if set within environ
-    use_wandb = len(wandb_project) > 0 or (
-        "WANDB_PROJECT" in os.environ and len(os.environ["WANDB_PROJECT"]) > 0)
+    use_wandb = wandb_project != "" or (
+        "WANDB_PROJECT" in os.environ and len(os.environ["WANDB_PROJECT"]) > 0
+    )
 
     # Only overwrite environ if wandb param passed
-    if len(wandb_project) > 0:
+    if wandb_project != "":
         os.environ["WANDB_PROJECT"] = wandb_project
-    if len(wandb_watch) > 0:
+    if wandb_watch != "":
         os.environ["WANDB_WATCH"] = wandb_watch
-    if len(wandb_log_model) > 0:
+    if wandb_log_model != "":
         os.environ["WANDB_LOG_MODEL"] = wandb_log_model
 
     model = LlamaForCausalLM.from_pretrained(
@@ -148,7 +149,7 @@ def train(
         result["labels"] = result["input_ids"].copy()
 
         return result
-    
+
     def generate_and_tokenize_prompt(data_point):
         text = data_point['content']
         tokenized_full_prompt = tokenize(text)
@@ -226,7 +227,7 @@ def train(
             save_steps=100,
             output_dir=output_dir,
             save_total_limit=3,
-            load_best_model_at_end=True if val_set_size > 0 else False,
+            load_best_model_at_end=val_set_size > 0,
             ddp_find_unused_parameters=False if ddp else None,
             group_by_length=group_by_length,
             report_to="wandb" if use_wandb else None,

@@ -11,27 +11,26 @@ class read_lawfile:
     def read_file(self, file_path):
         # 读取文件
         self.law = {}
-        f = open(file_path, encoding='utf-8')
-        content = f.read()
-        content = content.replace("\n\n", "\n")
-        content = content.replace("##", "")
-        # print(content)
-        chapter_p = re.search(self.chapter_mode, content)
-        while chapter_p is not None:
-            c_start = chapter_p.start()
-            c_end = chapter_p.end()
-            key = content[c_start:c_end]
-            content = content[c_end:]
-
+        with open(file_path, encoding='utf-8') as f:
+            content = f.read()
+            content = content.replace("\n\n", "\n")
+            content = content.replace("##", "")
+            # print(content)
             chapter_p = re.search(self.chapter_mode, content)
-            if chapter_p is not None:
-                end = chapter_p.start()
-                c_content = content[:end]
-                self.law[key] = self.read_entrys(c_content)
-            # print(content[c_start:c_end])
-            else:
-                self.law[key] = self.read_entrys(content)
-        f.close()
+            while chapter_p is not None:
+                c_start = chapter_p.start()
+                c_end = chapter_p.end()
+                key = content[c_start:c_end]
+                content = content[c_end:]
+
+                chapter_p = re.search(self.chapter_mode, content)
+                if chapter_p is not None:
+                    end = chapter_p.start()
+                    c_content = content[:end]
+                    self.law[key] = self.read_entrys(c_content)
+                # print(content[c_start:c_end])
+                else:
+                    self.law[key] = self.read_entrys(content)
         return self.law
 
     def read_entrys(self, content):
