@@ -49,8 +49,6 @@ class Iteratorize:
                 pass
             except:
                 traceback.print_exc()
-                pass
-
             self.q.put(self.sentinel)
             if self.c_callback:
                 self.c_callback(ret)

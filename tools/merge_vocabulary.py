@@ -15,17 +15,17 @@ if __name__ == '__main__':
     LOAD_PATH = args.load_path
     SAVE_DIR = args.save_dir
     VOC_PATH = args.voc_path
-    
+
     # Load pre-trained llama tokenizer and sentencepiece model
     llama_spm = model.ModelProto()
     llama_spm.ParseFromString(open(LOAD_PATH, "rb").read())
 
     # show size of llama's vocabulary
-    llama_spm_tokens_set = set(p.piece for p in llama_spm.pieces)
+    llama_spm_tokens_set = {p.piece for p in llama_spm.pieces}
     print(f"Size of initial llama's vocabulary: {len(llama_spm_tokens_set)}")
-    
+
     # Load custom vocabulary
-    new_tokens = open(VOC_PATH, "r").read().split("\n")    
+    new_tokens = open(VOC_PATH, "r").read().split("\n")
     for token in new_tokens:
         if token not in llama_spm_tokens_set:
             new_token = model.ModelProto().SentencePiece()
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     llama_tokenizer_old = LlamaTokenizer.from_pretrained(LOAD_PATH)
     llama_tokenizer_new = LlamaTokenizer.from_pretrained(SAVE_DIR)
     text = '''登记错误赔偿责任登记等手续登记等手续生效登记机构和登记办法登记机构赔偿后登记机构应当提供登记收费问题'''
-    
+
     print(f'Size of old vocabulary: {llama_tokenizer_old.vocab_size}')
     print(f'Size of new vocabulary: {llama_tokenizer_new.vocab_size}')
     print('All special tokens and ids in new llama:')
