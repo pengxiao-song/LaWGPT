@@ -1,6 +1,6 @@
 accelerate
 appdirs
-bitsandbytes==0.37.2
+bitsandbytes
 black
 black[jupyter]
 datasets

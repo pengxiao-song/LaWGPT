@@ -57,15 +57,18 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    pip install -r requirements.txt
 
    # 执行ui脚本(脚本会下载预训练模型,预计占用15GB)
-   bash scripts/webui.sh
-
-   # 打开浏览器,访问 http://127.0.0.1:7860/
-   # 在Instruction框输入法律问题,点击"Submit"按钮, 等待模型生成答案
+   bash ./scripts/webui.sh
    ```
 
-   如果您想使用自己的数据进行finetune，请查看脚本`scripts/finetune.sh`：
+2. 打开浏览器,访问 http://127.0.0.1:7860/  .在Instruction框输入法律问题,点击"Submit"按钮, 等待模型生成答案
+   <p align="center">
+      <img src="./assets/demo/demo.png" width="80%" >
+   </p>
+
+3. 如果您想使用自己的数据进行finetune，请查看脚本`scripts/finetune.sh`：
    ```bash
-   bash scripts/finetune.sh
+   # 设置好对应参数后运行脚本
+   bash ./scripts/finetune.sh
    ``` 
 
 
@@ -78,23 +81,6 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    由于 [LLaMA](https://github.com/facebookresearch/llama) 和 [Chinese-LLaMA](https://github.com/ymcui/Chinese-LLaMA-Alpaca) 均未开源模型权重。根据相应开源许可，**本项目只能发布 LoRA 权重**，无法发布完整的模型权重，请各位谅解。
    
    本项目给出[合并方式](https://github.com/pengxiao-song/LaWGPT/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6)，请各位获取原版权重后自行重构模型。
-
-
-3. 启动示例
-
-   启动本地服务：
-
-   ```bash
-   conda activate lawgpt
-   cd LaWGPT
-   sh src/scripts/generate.sh
-   ```
-   
-   接入服务：
-
-   <p align="center">
-      <img src="./assets/demo/demo.png" width="80%" >
-   </p>
 
 
 ## 项目结构
