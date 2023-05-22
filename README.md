@@ -60,8 +60,14 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    bash scripts/webui.sh
 
    # 打开浏览器,访问 http://127.0.0.1:7860/
-   # 在Instructions框输入法律问题,点击"Submit"按钮, 等待模型生成答案
+   # 在Instruction框输入法律问题,点击"Submit"按钮, 等待模型生成答案
    ```
+
+   如果您想使用自己的数据进行finetune，请查看脚本`scripts/finetune.sh`：
+   ```bash
+   bash scripts/finetune.sh
+   ``` 
+
 
 2. 合并模型权重（可选）
    

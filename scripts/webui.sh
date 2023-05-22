@@ -4,7 +4,7 @@
 # 使用huggingface上已经训练好的模型
 python webui.py \
     --load_8bit True \
-    --base_model 'minlik/chinese-alpaca-plus-7b-merged' \
+    --base_model 'minlik/chinese-llama-7b-merged' \
     --lora_weights 'entity303/lawgpt-lora-7b' \
     --prompt_template "law_template" \
     --server_name "0.0.0.0" \
@@ -16,6 +16,6 @@ python webui.py \
 #     --load_8bit True \
 #     --base_model 'minlik/chinese-alpaca-plus-7b-merged' \
 #     --lora_weights './outputs/chinese-alpaca-plus-7b-law-e1' \
-#     --prompt_template "law_template" \
+#     --prompt_template "alpaca" \
 #     --server_name "0.0.0.0" \
 #     --share_gradio Ture \
