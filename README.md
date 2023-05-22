@@ -24,7 +24,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 本项目持续开展，法律领域数据集及系列模型后续相继开源，敬请关注。
 
 ## 更新
-- 🛠️ 2023/05/22：项目主分支结构调整，详见[项目结构](https://github.com/pengxiao-song/LaWGPT#项目结构)
+- 🛠️ 2023/05/22：项目主分支结构调整，详见[项目结构](https://github.com/pengxiao-song/LaWGPT#项目结构)；支持[命令行批量推理](https://github.com/pengxiao-song/LaWGPT/blob/main/scripts/infer.sh)
 
 - 🪴 2023/05/15：发布 [中文法律数据源汇总（Awesome Chinese Legal Resources）](https://github.com/pengxiao-song/awesome-chinese-legal-resources) 和 [法律领域词表](https://github.com/pengxiao-song/LaWGPT/blob/main/resources/legal_vocab.txt)
 
@@ -53,25 +53,27 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    conda create -n lawgpt python=3.10 -y
    conda activate lawgpt
    pip install -r requirements.txt
-
-   # 启动可视化脚本（自动下载预训练模型约15GB）
-   bash ./scripts/webui.sh
    ```
+2. **启动 web ui（可选，易于调节参数）**
 
-2. 访问 http://127.0.0.1:7860 ：
+   - 首先，执行服务启动脚本：`bash ./scripts/webui.sh`
+
+   - 其次，访问 http://127.0.0.1:7860 ：
    <p align="center">
       <img src="./assets/demo/demo.png" width="80%" >
    </p>
-
-3. 合并模型权重（可选）
    
-   **如果您想使用 LaWGPT-7B-alpha 模型，可跳过改步，直接进入步骤3.**
+3. **命令行推理（可选，支持批量测试）**
 
-   如果您想使用 LaWGPT-7B-beta1.0 模型：
-
-   由于 [LLaMA](https://github.com/facebookresearch/llama) 和 [Chinese-LLaMA](https://github.com/ymcui/Chinese-LLaMA-Alpaca) 均未开源模型权重。根据相应开源许可，**本项目只能发布 LoRA 权重**，无法发布完整的模型权重，请各位谅解。
+   - 首先，参考 `resources/example_infer_data.json` 文件内容构造测试样本集；
    
-   本项目给出[合并方式](https://github.com/pengxiao-song/LaWGPT/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6)，请各位获取原版权重后自行重构模型。
+   - 其次，执行推理脚本：`bash scripts/infer.sh`。其中 `--infer_data_path` 参数为测试样本集路径，如果为空或者路径出错，则以交互模式运行。
+
+注意，以上步骤的默认模型为 LaWGPT-7B-alpha ，如果您想使用 LaWGPT-7B-beta1.0 模型：
+
+- 由于 [LLaMA](https://github.com/facebookresearch/llama) 和 [Chinese-LLaMA](https://github.com/ymcui/Chinese-LLaMA-Alpaca) 均未开源模型权重。根据相应开源许可，**本项目只能发布 LoRA 权重**，无法发布完整的模型权重，请各位谅解。
+
+- 本项目给出[合并方式](https://github.com/pengxiao-song/LaWGPT/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6)，请各位获取原版权重后自行重构模型。
 
 
 ## 项目结构
