@@ -137,7 +137,7 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 <details><summary>问题：酒驾撞人怎么判刑？</summary>
 
-![](assets/demo/example-07.jpeg)
+![](assets/demo/demo07.jpeg)
 
 </details>
 
