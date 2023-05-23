@@ -19,13 +19,13 @@ python finetune.py \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
     --lora_target_modules "[q_proj,v_proj]" \
-    --train_on_inputs True \
+    --train_on_inputs False \
     --add_eos_token True \
     --group_by_length False \
-    --wandb_project \
-    --wandb_run_name \
-    --wandb_watch \
-    --wandb_log_model \
+    --wandb_project "" \
+    --wandb_run_name "" \
+    --wandb_watch "" \
+    --wandb_log_model "" \
     --resume_from_checkpoint "./outputs/"${experiment_name} \
     --prompt_template_name "alpaca" \
 
