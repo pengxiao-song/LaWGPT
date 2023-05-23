@@ -11,6 +11,7 @@
     <a href=""><img src="https://img.shields.io/badge/version-beta1.0-blue"></a>
     <a href=""><img src="https://img.shields.io/badge/os-Linux-9cf"></a>
     <a href=""><img src="https://img.shields.io/github/last-commit/pengxiao-song/lawgpt"></a>
+    <a href="https://star-history.com/#pengxiao-song/LaWGPT&Timeline"><img src="https://img.shields.io/github/stars/pengxiao-song/lawgpt?color=yellow"></a> 
     <!-- <a href="https://www.lamda.nju.edu.cn/"><img src="https://img.shields.io/badge/support-NJU--LAMDA-9cf.svg"></a> -->
 </p>
 
@@ -60,8 +61,9 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
    - 首先，执行服务启动脚本：`bash scripts/webui.sh`
 
    - 其次，访问 http://127.0.0.1:7860 ：
+
    <p align="center">
-      <img src="./assets/demo/demo.png" width="80%" >
+      <img style="border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.5); width: 80%;", src="./assets/demo/example-03.jpeg">
    </p>
    
 3. **命令行推理（可选，支持批量测试）**
