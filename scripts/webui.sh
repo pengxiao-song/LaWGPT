@@ -8,7 +8,7 @@ python webui.py \
     --lora_weights 'entity303/lawgpt-lora-7b' \
     --prompt_template "law_template" \
     --server_name "0.0.0.0" \
-    --share_gradio Ture \
+    --share_gradio True \
 
 
 # 使用自己finetune的lora, 把自己的模型放到对应目录即可
@@ -18,4 +18,4 @@ python webui.py \
 #     --lora_weights './outputs/chinese-alpaca-plus-7b-law-e1' \
 #     --prompt_template "alpaca" \
 #     --server_name "0.0.0.0" \
-#     --share_gradio Ture \
+#     --share_gradio True \
