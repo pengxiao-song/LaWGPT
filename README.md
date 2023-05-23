@@ -9,6 +9,7 @@
 <p align="center">
     <a href="https://github.com/pengxiao-song/LaWGPT/wiki"><img src="https://img.shields.io/badge/docs-Wiki-brightgreen"></a>
     <a href=""><img src="https://img.shields.io/badge/version-beta1.0-blue"></a>
+    <a href=""><img src="https://img.shields.io/badge/os-Linux-9cf"></a>
     <a href=""><img src="https://img.shields.io/github/last-commit/pengxiao-song/lawgpt"></a>
     <!-- <a href="https://www.lamda.nju.edu.cn/"><img src="https://img.shields.io/badge/support-NJU--LAMDA-9cf.svg"></a> -->
 </p>
@@ -133,6 +134,12 @@ LawGPT 系列模型的训练过程分为两个阶段：
 ## 模型评估
 
 ### 输出示例
+
+<details><summary>问题：酒驾撞人怎么判刑？</summary>
+
+![](assets/demo/example-07.jpeg)
+
+</details>
 
 <details><summary>问题：请给出判决意见。</summary>
 
