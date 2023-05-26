@@ -26,7 +26,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 本项目持续开展，法律领域数据集及系列模型后续相继开源，敬请关注。
 
 ## 更新
-- 📣 2023/05/26：开放 [Discussions 讨论社区](https://github.com/pengxiao-song/LaWGPT/discussions)，欢迎朋友们交流探讨、提出意见、分享观点！
+- 📣 2023/05/26：开放 [Discussions 讨论区](https://github.com/pengxiao-song/LaWGPT/discussions)，欢迎朋友们交流探讨、提出意见、分享观点！
 
 - 🛠️ 2023/05/22：项目主分支结构调整，详见[项目结构](https://github.com/pengxiao-song/LaWGPT#项目结构)；支持[命令行批量推理](https://github.com/pengxiao-song/LaWGPT/blob/main/scripts/infer.sh)
 
