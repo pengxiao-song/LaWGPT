@@ -108,7 +108,7 @@ LaWGPT
 
 ## 数据构建
 
-本项目基于中文裁判文书网公开法律文书数据、司法考试数据等数据集展开，详情参考[中文法律数据汇总]()
+本项目基于中文裁判文书网公开法律文书数据、司法考试数据等数据集展开，详情参考[中文法律数据源汇总（Awesome Chinese Legal Resources）](https://github.com/pengxiao-song/awesome-chinese-legal-resources)
 
 1. 初级数据生成：根据 [Stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca#data-generation-process) 和 [self-instruct](https://github.com/yizhongw/self-instruct) 方式生成对话问答数据
 2. 知识引导的数据生成：通过 Knowledge-based Self-Instruct 方式基于中文法律结构化知识生成数据。
