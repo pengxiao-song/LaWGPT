@@ -8,7 +8,8 @@
 
 <p align="center">
     <a href="https://github.com/pengxiao-song/LaWGPT/wiki"><img src="https://img.shields.io/badge/docs-Wiki-brightgreen"></a>
-    <a href=""><img src="https://img.shields.io/badge/version-beta1.0-blue"></a>
+    <a href="https://huggingface.co/entity303"><img src="https://img.shields.io/badge/Hugging%20Face-entity303-green"></a>
+    <a href=""><img src="https://img.shields.io/badge/version-beta1.1-blue"></a>
     <a href=""><img src="https://img.shields.io/badge/os-Linux-9cf"></a>
     <a href=""><img src="https://img.shields.io/github/last-commit/pengxiao-song/lawgpt"></a>
     <a href="https://star-history.com/#pengxiao-song/LaWGPT&Timeline"><img src="https://img.shields.io/github/stars/pengxiao-song/lawgpt?color=yellow"></a> 
@@ -26,6 +27,12 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 本项目持续开展，法律领域数据集及系列模型后续相继开源，敬请关注。
 
 ## 更新
+
+- 🌟 2023/05/30：公开发布
+  <a href="https://huggingface.co/entity303/lawgpt-lora-7b-v2"><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.1-yellow"></a>
+ 
+  - **LaWGPT-7B-beta1.1**：法律对话模型，构造 35w 高质量法律问答数据集基于 Chinese-alpaca-plus-7B 指令精调
+
 - 📣 2023/05/26：开放 [Discussions 讨论区](https://github.com/pengxiao-song/LaWGPT/discussions)，欢迎朋友们交流探讨、提出意见、分享观点！
 
 - 🛠️ 2023/05/22：项目主分支结构调整，详见[项目结构](https://github.com/pengxiao-song/LaWGPT#项目结构)；支持[命令行批量推理](https://github.com/pengxiao-song/LaWGPT/blob/main/scripts/infer.sh)
@@ -33,15 +40,15 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 - 🪴 2023/05/15：发布 [中文法律数据源汇总（Awesome Chinese Legal Resources）](https://github.com/pengxiao-song/awesome-chinese-legal-resources) 和 [法律领域词表](https://github.com/pengxiao-song/LaWGPT/blob/main/resources/legal_vocab.txt)
 
 - 🌟 2023/05/13：公开发布
-  <a href=""><img src="https://img.shields.io/badge/Model-Legal--Base--7B-blue"></a> 
-  <a href=""><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.0-yellow"></a>
+  <a href="https://huggingface.co/entity303/legal-lora-7b"><img src="https://img.shields.io/badge/Model-Legal--Base--7B-blue"></a> 
+  <a href="https://huggingface.co/entity303/lawgpt-legal-lora-7b"><img src="https://img.shields.io/badge/Model-LaWGPT--7B--beta1.0-yellow"></a>
   
   - **Legal-Base-7B**：法律基座模型，使用 50w 中文裁判文书数据二次预训练
   
   - **LaWGPT-7B-beta1.0**：法律对话模型，构造 30w 高质量法律问答数据集基于 Legal-Base-7B 指令精调
   
 - 🌟 2023/04/12：内部测试
-  <a href=""><img src="https://img.shields.io/badge/Model-Lawgpt--7B--alpha-yellow"></a>
+  <a href="https://huggingface.co/entity303/lawgpt-lora-7b"><img src="https://img.shields.io/badge/Model-Lawgpt--7B--alpha-yellow"></a>
   - **LaWGPT-7B-alpha**：在 Chinese-LLaMA-7B 的基础上直接构造 30w 法律问答数据集指令精调
 
 ## 快速开始
