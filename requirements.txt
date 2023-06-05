@@ -10,3 +10,5 @@ git+https://github.com/huggingface/transformers.git
 gradio
 sentencepiece
 wandb
+scipy
+socksio
