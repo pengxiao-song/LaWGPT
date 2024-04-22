@@ -202,7 +202,11 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ## 协作者
 
-如下各位合作开展（按字母序排列）：[@cainiao](https://github.com/herobrine19)、[@njuyxw](https://github.com/njuyxw)、[@pengxiao-song](https://github.com/pengxiao-song)
+如下各位合作开展（按字母序排列）：[@cainiao](https://github.com/herobrine19)、[@njuyxw](https://github.com/njuyxw)、[@pengxiao-song](https://github.com/pengxiao-song)、[@WNJXYK](https://github.com/WNJXYK)
+
+指导老师：李宇峰、郭兰哲、涂威威（<img src="https://github.com/pengxiao-song/LaWGPT/assets/47233927/3ae2cfac-f2b0-4383-8a7e-0252d8558aed" width="10%" >），由南京大学机器学习与数据挖掘研究组（
+<img src="assets/logo/lamda.png" width="8%"> &nbsp;
+）支持
 
 
 ## 免责声明
