@@ -20,7 +20,7 @@ LaWGPT 是一系列基于中文法律知识的开源大语言模型。
 
 该系列模型在通用中文基座模型（如 Chinese-LLaMA、ChatGLM 等）的基础上扩充法律领域专有词表、**大规模中文法律语料预训练**，增强了大模型在法律领域的基础语义理解能力。在此基础上，**构造法律领域对话问答数据集、中国司法考试数据集进行指令精调**，提升了模型对法律内容的理解和执行能力。
 
-详细内容请参考[技术报告]()。
+详细内容请参考[技术报告](https://arxiv.org/pdf/2406.04614)。
 
 ---
 
@@ -243,4 +243,15 @@ LawGPT 系列模型的训练过程分为两个阶段：
 
 ## 引用
 
-如果您觉得我们的工作对您有所帮助，请考虑引用该项目
+如果您觉得我们的工作对您有所帮助，请考虑引用该项目。
+
+```plain
+@misc{lawgpt,
+      title={LawGPT: A Chinese Legal Knowledge-Enhanced Large Language Model}, 
+      author={Zhi Zhou and Jiang-Xin Shi and Peng-Xiao Song and Xiao-Wen Yang and Yi-Xuan Jin and Lan-Zhe Guo and Yu-Feng Li},
+      year={2024},
+      eprint={2406.04614},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
